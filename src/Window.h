@@ -5,8 +5,6 @@
 
 class Window {
 public:
-  // SDL_Renderer* renderer{nullptr};
-
   Window() {
     window = SDL_CreateWindow(
       "Hello Window",
@@ -36,7 +34,6 @@ public:
 
   ~Window() {
     if (window && SDL_WasInit(SDL_INIT_VIDEO)) {
-      // SDL_DestroyRenderer(renderer);
       SDL_DestroyWindow(window);
     } else {
       std::cout << "Skipping SDL_DestroyWindow\n";

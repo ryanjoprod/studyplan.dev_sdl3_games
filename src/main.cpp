@@ -16,10 +16,6 @@ int main(int, char**) {
         IsRunning = false;
       }
     }
-
-    // SDL_SetRenderDrawColor(GameWindow.renderer, 255, 255, 255, 255);
-    // SDL_RenderClear(GameWindow.renderer);
-    // SDL_RenderPresent(GameWindow.renderer);
   }
 
   SDL_Quit();
