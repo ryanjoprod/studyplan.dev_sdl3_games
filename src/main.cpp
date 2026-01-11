@@ -1,18 +1,12 @@
 #include <SDL3/SDL.h>
 #include <SDL3/SDL_main.h>
-#include <SDL3_image/SDL_image.h>
-#include <SDL3_ttf/SDL_ttf.h>
+
+#include "Window.h"
 
 int main(int, char**) {
   SDL_Init(SDL_INIT_VIDEO);
 
-  SDL_Window* window;
-  SDL_Renderer* renderer;
-
-  SDL_CreateWindowAndRenderer(
-    "Hello World!", 800, 300, 0, &window, &renderer
-  );
-
+  Window GameWindow;
 
   bool IsRunning = true;
   SDL_Event Event;
@@ -23,13 +17,11 @@ int main(int, char**) {
       }
     }
 
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-    SDL_RenderClear(renderer);
-    SDL_RenderPresent(renderer);
+    // SDL_SetRenderDrawColor(GameWindow.renderer, 255, 255, 255, 255);
+    // SDL_RenderClear(GameWindow.renderer);
+    // SDL_RenderPresent(GameWindow.renderer);
   }
 
-  SDL_DestroyRenderer(renderer);
-  SDL_DestroyWindow(window);
   SDL_Quit();
 
   return 0;
