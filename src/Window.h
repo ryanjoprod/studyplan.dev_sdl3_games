@@ -9,8 +9,23 @@ public:
     window = SDL_CreateWindow(
       "Hello Window",
       800, 300,
-      SDL_WINDOW_RESIZABLE
+      SDL_WINDOW_RESIZABLE | SDL_WINDOW_METAL
     );
+
+    if (!window) {
+      std::cout << "Couldn't create window. Trying without Metal.\n";
+
+      window = SDL_CreateWindow(
+        "Hello window",
+        800, 300,
+        SDL_WINDOW_RESIZABLE
+      );
+    } 
+
+    if (window) {
+      std::cout << "Window created successfully.\n";
+      SDL_ClearError();
+    }
 
     const auto* fmt{SDL_GetPixelFormatDetails(
       GetSurface()->format

@@ -2,18 +2,21 @@
 #include <SDL3/SDL_main.h>
 
 #include "Window.h"
+#include "ErrorHandling.h"
 
 int main(int, char**) {
-  SDL_Init(SDL_INIT_VIDEO);
+  if (SDL_Init(SDL_INIT_VIDEO)) {
+    std::cout << "Init failed: " << SDL_GetError();
+  }
 
-  Window GameWindow;
+  Window gameWindow;
 
-  bool IsRunning = true;
-  SDL_Event Event;
-  while(IsRunning) {
-    while(SDL_PollEvent(&Event)) {
-      if (Event.type == SDL_EVENT_QUIT) {
-        IsRunning = false;
+  bool isRunning = true;
+  SDL_Event event;
+  while(isRunning) {
+    while(SDL_PollEvent(&event)) {
+      if (event.type == SDL_EVENT_QUIT) {
+        isRunning = false;
       }
     }
   }
