@@ -2,12 +2,9 @@
 #include <SDL3/SDL_main.h>
 
 #include "Window.h"
-#include "ErrorHandling.h"
 
 int main(int, char**) {
-  if (SDL_Init(SDL_INIT_VIDEO)) {
-    std::cout << "Init failed: " << SDL_GetError();
-  }
+  SDL_Init(SDL_INIT_VIDEO);
 
   Window gameWindow;
 
@@ -19,6 +16,12 @@ int main(int, char**) {
         isRunning = false;
       }
     }
+
+    gameWindow.render();
+
+    // Render everything else
+
+    gameWindow.update();
   }
 
   SDL_Quit();
