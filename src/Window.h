@@ -8,21 +8,18 @@ public:
   Window() {
     window = SDL_CreateWindow(
       "Hello Window",
-      getWidth(), getHeight(),
+      800, 300,
       SDL_WINDOW_RESIZABLE
     );
   }
 
-  int getWidth() const { return 800; }
-  int getHeight() const { return 300; }
-
   void render() {
     const auto* fmt{SDL_GetPixelFormatDetails(
-      GetSurface()->format
+      getSurface()->format
     )};
 
     SDL_FillSurfaceRect(
-      GetSurface(),
+      getSurface(),
       nullptr,
       SDL_MapRGB(fmt, nullptr, 50, 50, 50)
     );
@@ -32,7 +29,7 @@ public:
     SDL_UpdateWindowSurface(window);
   }
 
-  SDL_Surface* GetSurface() const {
+  SDL_Surface* getSurface() const {
     return SDL_GetWindowSurface(window);
   }
 
