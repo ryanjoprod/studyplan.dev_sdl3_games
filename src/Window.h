@@ -8,10 +8,13 @@ public:
   Window() {
     window = SDL_CreateWindow(
       "Hello Window",
-      800, 300,
+      getWidth(), getHeight(),
       SDL_WINDOW_RESIZABLE
     );
   }
+
+  int getWidth() const { return 800; }
+  int getHeight() const { return 300; }
 
   void render() {
     const auto* fmt{SDL_GetPixelFormatDetails(
