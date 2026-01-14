@@ -5,17 +5,12 @@
 
 class Rectangle {
 public:
-  Rectangle(
-    const SDL_Rect& rect
-  )
-  : rect{rect}
-  {}
+  Rectangle(const SDL_Rect& rect)
+  : rect{rect} {}
 
   void render(SDL_Surface* surface) const {
     auto [r, g, b, a]{
-      isPointerHovering 
-        ? (isClicked ? clickedColor : hoverColor) 
-        : color
+      isPointerHovering ?  hoverColor : color
     };
 
     const auto* fmt = SDL_GetPixelFormatDetails(
@@ -41,11 +36,10 @@ public:
       isPointerHovering = false;
     } else if (e.type == SDL_EVENT_MOUSE_BUTTON_DOWN) {
       if (isPointerHovering
-        && e.button.button == SDL_BUTTON_LEFT) {
-        isClicked = true;
+        && e.button.button == SDL_BUTTON_LEFT
+      ) {
+        std::cout << "A left-click happened on me!\n";
       }
-    } else if (e.type == SDL_EVENT_MOUSE_BUTTON_UP) {
-      isClicked = false;
     }
   }
 
@@ -61,10 +55,9 @@ private:
   SDL_Rect rect;
   SDL_Color color{255, 0, 0, 0};
   SDL_Color hoverColor{0, 0, 255, 255};
-  SDL_Color clickedColor{0, 255, 0, 255};
 
   bool isPointerHovering{false};
-  bool isClicked{false};
+
   bool isWithinRect(int x, int y) {
     if (x < rect.x) return false;
     if (x > rect.x + rect.w) return false;
